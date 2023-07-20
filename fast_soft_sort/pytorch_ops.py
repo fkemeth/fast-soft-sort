@@ -63,6 +63,7 @@ def soft_rank(values, direction="ASCENDING", regularization_strength=1.0,
   Returns:
     A 2d-tensor, soft-ranked along the second axis.
   """
+  device = values.device
   if len(values.shape) != 2:
     raise ValueError("'values' should be a 2d-tensor "
                      "but got %r." % values.shape)
@@ -71,7 +72,7 @@ def soft_rank(values, direction="ASCENDING", regularization_strength=1.0,
                           regularization_strength=regularization_strength,
                           direction=direction,
                           regularization=regularization)
-  return map_tensor(wrapped_fn.apply, values).to(values.device)
+  return map_tensor(wrapped_fn.apply, values).to(device)
 
 
 def soft_sort(values, direction="ASCENDING",
