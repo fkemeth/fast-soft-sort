@@ -71,7 +71,7 @@ def soft_rank(values, direction="ASCENDING", regularization_strength=1.0,
                           regularization_strength=regularization_strength,
                           direction=direction,
                           regularization=regularization)
-  return map_tensor(wrapped_fn.apply, values)
+  return map_tensor(wrapped_fn.apply, values).to(values.device)
 
 
 def soft_sort(values, direction="ASCENDING",
